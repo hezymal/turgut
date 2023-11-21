@@ -1,4 +1,4 @@
-type Guid = string;
+import { Guid } from "./base";
 
 export interface Examination {
     id: Guid;

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DashboardPage } from "pages/DashboardPage";
 import { CreateExaminationPage } from "pages/CreateExaminationPage";
 import { ExaminationListPage } from "pages/ExaminationListPage";
+import { ExaminationPage } from "pages/ExaminationPage";
 import { GlobalStyle } from "ui/GlobalStyle";
 import { Layout } from "./components/Layout";
 
@@ -22,6 +23,10 @@ export const App: FC = () => {
                         <Route
                             path="/examinations/create"
                             element={<CreateExaminationPage />}
+                        />
+                        <Route
+                            path="/examinations/:examinationId"
+                            element={<ExaminationPage />}
                         />
                     </Route>
                 </Routes>

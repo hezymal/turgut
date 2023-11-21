@@ -1,10 +1,12 @@
+import { Guid } from "logic/base";
+
 interface CreateExaminationRequest {
     title: string;
     description: string;
 }
 
 export interface ExaminationResponse {
-    id: string;
+    id: Guid;
     title: string;
     description: string;
 }
@@ -50,6 +52,19 @@ export const getExaminations = () => {
                         "Examination Four.\nThis is fourth examination in this cemestry.",
                 },
             ]);
+        }, 1000);
+    });
+};
+
+export const getExaminationById = (examinationId: Guid) => {
+    return new Promise<ExaminationResponse>((resolve) => {
+        setTimeout(() => {
+            resolve({
+                id: examinationId,
+                title: "Examination 1",
+                description:
+                    "Examination One.\nThis is first examination in this cemestry.",
+            });
         }, 1000);
     });
 };
