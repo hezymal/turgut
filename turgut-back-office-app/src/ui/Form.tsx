@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, FormEventHandler, ReactNode } from "react";
 import styled from "styled-components";
 
 import { TextHeader } from "./Text";
@@ -6,7 +6,7 @@ import { pt } from "./sizes";
 
 interface FormProps {
     children: ReactNode;
-    onSubmit?: () => void;
+    onSubmit?: FormEventHandler<HTMLFormElement>;
 }
 
 interface FieldProps {

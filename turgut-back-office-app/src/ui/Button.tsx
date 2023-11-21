@@ -19,9 +19,9 @@ interface Props {
 }
 
 interface StyledButtonProps {
-    buttonType: ButtonType;
-    size: ButtonSize;
-    width: ButtonWidth;
+    $type: ButtonType;
+    $size: ButtonSize;
+    $width: ButtonWidth;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -33,7 +33,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     text-transform: uppercase;
 
     ${(props) => {
-        switch (props.size) {
+        switch (props.$size) {
             case "md":
                 return `
                     height: ${pt(5)};
@@ -51,7 +51,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     }}
 
     ${(props) => {
-        switch (props.buttonType) {
+        switch (props.$type) {
             case "default":
                 return `
                     background-color: ${colors.grey.base};
@@ -65,7 +65,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     }}
 
     ${(props) => {
-        switch (props.width) {
+        switch (props.$width) {
             case "stretched":
                 return `
                     width: 100%;
@@ -82,12 +82,7 @@ export const Button: FC<Props> = ({
     width = "default",
 }) => {
     return (
-        <StyledButton
-            buttonType={type}
-            size={size}
-            type={htmlType}
-            width={width}
-        >
+        <StyledButton type={htmlType} $type={type} $size={size} $width={width}>
             {children}
         </StyledButton>
     );

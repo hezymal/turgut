@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Guid } from "logic/base";
 
 interface CreateExaminationRequest {
@@ -11,49 +12,16 @@ export interface ExaminationResponse {
     description: string;
 }
 
-export const createExamination = (request: CreateExaminationRequest) => {
-    return new Promise<ExaminationResponse>((resolve) => {
-        setTimeout(() => {
-            resolve({
-                id: "1",
-                title: request.title,
-                description: request.description,
-            });
-        }, 1000);
-    });
+export const createExamination = async (request: CreateExaminationRequest) => {
+    const response = await axios.post<ExaminationResponse>("/api/examinations", request);
+    return response.data;
 };
 
-export const getExaminations = () => {
-    return new Promise<ExaminationResponse[]>((resolve) => {
-        setTimeout(() => {
-            resolve([
-                {
-                    id: "1",
-                    title: "Examination 1",
-                    description:
-                        "Examination One.\nThis is first examination in this cemestry.",
-                },
-                {
-                    id: "2",
-                    title: "Examination 2",
-                    description:
-                        "Examination Two.\nThis is second examination in this cemestry.",
-                },
-                {
-                    id: "3",
-                    title: "Examination 3",
-                    description:
-                        "Examination Three.\nThis is third examination in this cemestry.",
-                },
-                {
-                    id: "4",
-                    title: "Examination 4",
-                    description:
-                        "Examination Four.\nThis is fourth examination in this cemestry.",
-                },
-            ]);
-        }, 1000);
-    });
+export const getExaminations = async () => {
+    const response = await axios.get<ExaminationResponse[]>(
+        "/api/examinations"
+    );
+    return response.data;
 };
 
 export const getExaminationById = (examinationId: Guid) => {

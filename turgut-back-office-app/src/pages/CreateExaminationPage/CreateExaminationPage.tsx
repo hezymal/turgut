@@ -1,4 +1,4 @@
-import { FC, Fragment, useState } from "react";
+import { FC, FormEventHandler, Fragment, useState } from "react";
 
 import { Page } from "common/Page";
 import { createExamination } from "services/api";
@@ -13,10 +13,11 @@ export const CreateExaminationPage: FC = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState<any>(null);
 
-    const handleFormSubmit = async () => {
+    const handleFormSubmit: FormEventHandler = async (event) => {
+        event.preventDefault();
         setLoading(true);
         try {
-            await createExamination({ title, description });
+            await createExamination({ title, description: "" });
         } finally {
             setLoading(false);
         }
@@ -39,7 +40,9 @@ export const CreateExaminationPage: FC = () => {
                             />
                         </Field>
                         <Field>
-                            <Button htmlType="submit">Create</Button>
+                            <Button type="primary" htmlType="submit">
+                                Create
+                            </Button>
                         </Field>
                     </Form>
                 </Fragment>
