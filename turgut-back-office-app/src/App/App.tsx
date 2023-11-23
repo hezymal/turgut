@@ -14,20 +14,19 @@ export const App: FC = () => {
             <GlobalStyle />
             <BrowserRouter>
                 <Routes>
-                    <Route element={<Layout />}>
-                        <Route path="/" element={<DashboardPage />} />
-                        <Route
-                            path="/examinations"
-                            element={<ExaminationListPage />}
-                        />
-                        <Route
-                            path="/examinations/create"
-                            element={<CreateExaminationPage />}
-                        />
-                        <Route
-                            path="/examinations/:examinationId"
-                            element={<ExaminationPage />}
-                        />
+                    <Route path="/" element={<Layout />}>
+                        <Route index element={<DashboardPage />} />
+                        <Route path="examinations">
+                            <Route index element={<ExaminationListPage />} />
+                            <Route
+                                path="create/*"
+                                element={<CreateExaminationPage />}
+                            />
+                            <Route
+                                path=":examinationId"
+                                element={<ExaminationPage />}
+                            />
+                        </Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

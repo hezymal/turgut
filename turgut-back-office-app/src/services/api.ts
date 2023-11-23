@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import { Guid } from "logic/base";
 
 interface CreateExaminationRequest {
@@ -13,7 +14,10 @@ export interface ExaminationResponse {
 }
 
 export const createExamination = async (request: CreateExaminationRequest) => {
-    const response = await axios.post<ExaminationResponse>("/api/examinations", request);
+    const response = await axios.post<ExaminationResponse>(
+        "/api/examinations",
+        request
+    );
     return response.data;
 };
 

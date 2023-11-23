@@ -9,6 +9,7 @@ export const colors = {
     },
     grey: {
         base: "#8C8C8C",
+        light: "#a3a3a3",
         lighten: "#f3f3f3",
     },
 };

@@ -1,11 +1,13 @@
 import { FC, Fragment, useEffect, useState } from "react";
 
-import { Page } from "common/Page";
-import { NavLink } from "ui/Link";
+import { Page, PageBlock, PageTitle } from "common/Page";
+import { Breadcrumb, Breadcrumbs } from "ui/Breadcrumbs";
+import { Link } from "ui/Link";
 import { ExaminationResponse, getExaminations } from "services/api";
 
 import { ExaminationItem } from "./components/ExaminationItem";
 import { ExaminationList } from "./components/ExaminationList";
+import { Spinner } from "ui/Spinner";
 
 export const ExaminationListPage: FC = () => {
     const [loading, setLoading] = useState(false);
@@ -29,20 +31,37 @@ export const ExaminationListPage: FC = () => {
         <Page
             content={
                 <Fragment>
-                    <NavLink type="button-primary" to="/examinations/create">
-                        Create
-                    </NavLink>
-                    <ExaminationList>
-                        {examinations.map((examination) => (
-                            <ExaminationItem
-                                key={examination.id}
-                                examination={examination}
-                            />
-                        ))}
-                    </ExaminationList>
+                    <PageBlock>
+                        <Breadcrumbs>
+                            <Breadcrumb to="/examinations">
+                                examinations
+                            </Breadcrumb>
+                        </Breadcrumbs>
+                    </PageBlock>
+                    <PageBlock>
+                        <PageTitle>Examinations</PageTitle>
+                    </PageBlock>
+                    <PageBlock>
+                        <Link type="button-primary" to="/examinations/create">
+                            Create
+                        </Link>
+                    </PageBlock>
+                    <PageBlock>
+                        {loading ? (
+                            <Spinner />
+                        ) : (
+                            <ExaminationList>
+                                {examinations.map((examination) => (
+                                    <ExaminationItem
+                                        key={examination.id}
+                                        examination={examination}
+                                    />
+                                ))}
+                            </ExaminationList>
+                        )}
+                    </PageBlock>
                 </Fragment>
             }
-            aside={<div />}
         />
     );
 };

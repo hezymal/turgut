@@ -1,53 +1,73 @@
-import { FC, FormEventHandler, Fragment, useState } from "react";
+import { FC } from "react";
+import { Route, Routes } from "react-router-dom";
 
 import { Page } from "common/Page";
-import { createExamination } from "services/api";
-import { Button } from "ui/Button";
-import { Field, Form } from "ui/Form";
-import { TextHeader } from "ui/Text";
-import { TextEditor } from "ui/TextEditor";
-import { TextInput } from "ui/TextInput";
+import { Tree, TreeItem } from "ui/Tree";
+import { NavLink } from "ui/Link";
+
+import { CompletionSection } from "./components/CompletionSection";
+import { IntroductionForm } from "./components/IntroductionForm";
+import { TaskForm } from "./components/TaskForm";
 
 export const CreateExaminationPage: FC = () => {
-    const [loading, setLoading] = useState(false);
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState<any>(null);
-
-    const handleFormSubmit: FormEventHandler = async (event) => {
-        event.preventDefault();
-        setLoading(true);
-        try {
-            await createExamination({ title, description: "" });
-        } finally {
-            setLoading(false);
-        }
-    };
-
     return (
         <Page
             content={
-                <Fragment>
-                    <TextHeader>Create Examination</TextHeader>
-                    <Form onSubmit={handleFormSubmit}>
-                        <Field title="Title">
-                            <TextInput value={title} onChange={setTitle} />
-                        </Field>
-                        <Field title="Description">
-                            <TextEditor
-                                elementId="create-examination-page"
-                                value={description}
-                                onChange={setDescription}
-                            />
-                        </Field>
-                        <Field>
-                            <Button type="primary" htmlType="submit">
-                                Create
-                            </Button>
-                        </Field>
-                    </Form>
-                </Fragment>
+                <Routes>
+                    <Route index element={<IntroductionForm />} />
+                    <Route path="tasks/:taskNumber" element={<TaskForm />} />
+                    <Route path="completion" element={<CompletionSection />} />
+                </Routes>
             }
-            aside={<div />}
+            aside={
+                <Tree>
+                    <TreeItem>
+                        <NavLink to="/examinations/create" end>
+                            Introduction
+                        </NavLink>
+                    </TreeItem>
+                    <TreeItem>
+                        <NavLink to="/examinations/create/tasks/1">
+                            Task #1
+                        </NavLink>
+                    </TreeItem>
+                    <TreeItem>
+                        <NavLink to="/examinations/create/tasks/2">
+                            Task #2
+                        </NavLink>
+                    </TreeItem>
+                    <TreeItem>
+                        <NavLink to="/examinations/create/tasks/3">
+                            Task #3
+                        </NavLink>
+                    </TreeItem>
+                    <TreeItem>
+                        <NavLink to="/examinations/create/tasks/4">
+                            Task #4
+                        </NavLink>
+                    </TreeItem>
+                    <TreeItem>
+                        <NavLink to="/examinations/create/tasks/5">
+                            Task #5
+                        </NavLink>
+                    </TreeItem>
+                    <TreeItem>
+                        <NavLink to="/examinations/create/tasks/6">
+                            Task #6
+                        </NavLink>
+                    </TreeItem>
+                    <TreeItem>
+                        <NavLink to="/examinations/create/tasks/7">
+                            Task #7
+                        </NavLink>
+                    </TreeItem>
+                    <TreeItem>
+                        <NavLink to="/examinations/create/completion">
+                            Completion
+                        </NavLink>
+                    </TreeItem>
+                </Tree>
+            }
         />
     );
 };

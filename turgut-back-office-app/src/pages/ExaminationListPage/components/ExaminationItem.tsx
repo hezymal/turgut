@@ -2,7 +2,7 @@ import { FC } from "react";
 import styled from "styled-components";
 
 import { Examination } from "logic/examination";
-import { NavLink } from "ui/Link";
+import { Link } from "ui/Link";
 import { colors } from "ui/colors";
 import { pt } from "ui/sizes";
 
@@ -35,13 +35,14 @@ export const ExaminationItem: FC<Props> = ({ examination }) => {
         <StyledMainBlock>
             <StyledDetails>{examination.title}</StyledDetails>
             <StyledActions>
-                <NavLink
+                <Link
                     to={`/examinations/${examination.id}`}
                     size="sm"
                     width="stretched"
+                    type="button-default"
                 >
                     Open
-                </NavLink>
+                </Link>
             </StyledActions>
         </StyledMainBlock>
     );

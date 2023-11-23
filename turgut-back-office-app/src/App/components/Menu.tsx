@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import { colors } from "ui/colors";
+import { NavLink } from "ui/Link";
 import { pt } from "ui/sizes";
 
 const StyledMainBlock = styled.div`
@@ -17,30 +16,15 @@ const StyledList = styled.ul`
     line-height: ${pt(4)};
 `;
 
-const StyledNavLink = styled(NavLink)`
-    color: ${colors.grey.base};
-    text-decoration: none;
-
-    &:hover {
-        color: black;
-    }
-
-    &.active {
-        color: black;
-    }
-`;
-
 export const Menu: FC = () => {
     return (
         <StyledMainBlock>
             <StyledList>
                 <li>
-                    <StyledNavLink to="/">Dashboard</StyledNavLink>
+                    <NavLink to="/">Dashboard</NavLink>
                 </li>
                 <li>
-                    <StyledNavLink to="/examinations">
-                        Examinations
-                    </StyledNavLink>
+                    <NavLink to="/examinations">Examinations</NavLink>
                 </li>
             </StyledList>
         </StyledMainBlock>

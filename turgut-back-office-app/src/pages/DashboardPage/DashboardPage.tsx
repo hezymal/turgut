@@ -1,7 +1,27 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 
-import { Page } from "common/Page";
+import { Page, PageBlock, PageTitle } from "common/Page";
+import { Breadcrumbs, Breadcrumb } from "ui/Breadcrumbs";
+import { Spinner } from "ui/Spinner";
 
 export const DashboardPage: FC = () => {
-    return <Page content={<div>DashboardPage</div>} aside={<div />} />;
+    return (
+        <Page
+            content={
+                <Fragment>
+                    <PageBlock>
+                        <Breadcrumbs>
+                            <Breadcrumb to="/dashboard">dashboard</Breadcrumb>
+                        </Breadcrumbs>
+                    </PageBlock>
+                    <PageBlock>
+                        <PageTitle>Dashboard</PageTitle>
+                    </PageBlock>
+                    <PageBlock>
+                        <Spinner />
+                    </PageBlock>
+                </Fragment>
+            }
+        />
+    );
 };
